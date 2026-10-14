@@ -1,0 +1,2 @@
+income 50.0 lunch
+spence 2.0 ticket

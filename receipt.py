@@ -1,0 +1,6 @@
+name=input("product:")
+price=float(input("price:"))
+number=int(input("number:"))
+print("product name:", name)
+print("price:",price,"number:",number)
+print("total:", price*number)
