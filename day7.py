@@ -1,0 +1,26 @@
+import pandas as pd
+df=pd.read_csv("sales_project.csv")
+print(df)
+print(df.shape)
+print(df.isna().sum())
+df_clean=df.dropna()
+print(df_clean.shape)
+df_clean=df_clean.drop_duplicates()
+print(df_clean.shape)
+print(df_clean)
+print(df_clean.sort_values("qty", ascending=False))
+
+import matplotlib.pyplot as plt
+df_clean["item"] = df_clean["item"].replace("pad thai", "Pad Thai")
+df_clean["qty"] = df_clean["qty"].replace("6份", "6")
+df_clean["qty"] = df_clean["qty"].astype(int)
+df_clean["revenue"] = df_clean["qty"] * df_clean["price"]
+sales = df_clean.groupby("item")["revenue"].sum()
+sales = sales.sort_values(ascending=False)
+plt.title("Sales by Item")
+plt.ylabel("Revenue")
+plt.bar(sales.index, sales.values)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+print(sales)
